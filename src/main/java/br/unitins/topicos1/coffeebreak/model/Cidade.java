@@ -13,6 +13,7 @@ public class Cidade extends DefaultEntity {
 	@JoinColumn(name = "id_estado")
 	private Estado estado;
 
+	//GETTERS E SETTERS
 	public String getNome() {
 		return nome;
 	}

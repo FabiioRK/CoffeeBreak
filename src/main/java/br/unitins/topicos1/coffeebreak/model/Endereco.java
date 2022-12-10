@@ -16,6 +16,7 @@ public class Endereco extends DefaultEntity {
 	@JoinColumn(name = "id_cidade")
 	private Cidade cidade;
 
+	//GETTERS E SETTERS
 	public String getLogradouro() {
 		return logradouro;
 	}

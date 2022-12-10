@@ -8,6 +8,7 @@ public class Estado extends DefaultEntity {
 	private String nome;
 	private String sigla;
 
+	//GETTERS E SETTERS
 	public String getNome() {
 		return nome;
 	}

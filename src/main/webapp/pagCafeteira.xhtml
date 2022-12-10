@@ -10,12 +10,13 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
     <h:form id="form">
-        <p:dataView var="produto" value="#{homeController.listaProduto}" rows="6" paginator="true" 
+        <p:dataView var="produto" value="#{pagCafeteiraController.listaProduto}" rows="6" paginator="true" 
        				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} produtos"
        				
        				rowsPerPageTemplate="5,10,15"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true" emptyMessage="Produto não encontrado!" style="margin-left:20px; margin-right:20px;"  >
+                    gridIcon="pi pi-th-large" listIcon="pi pi-bars"
+                    layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true" emptyMessage="Produto não encontrado!!" style="margin-left:20px; margin-right:20px;"  >
 
                <p:dataViewGridItem >
 		        <p:card  style="text-align:center; line-height: 1.5; font-size: large; padding: 0;" >
@@ -33,7 +34,7 @@
 							value="Adicionar ao Carrinho" 
 							icon="pi pi-shopping-cart" 
 							style="font-size: medium; margin-top: 10px;"
-							actionListener="#{homeController.adicionarCarrinho(produto)}"
+							actionListener="#{pagCafeteiraController.adicionarCarrinho(produto)}"
 							process="@this" ajax="false"/>
 		            </h:panelGrid>
 		        </p:card>

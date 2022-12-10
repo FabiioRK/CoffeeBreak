@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+		<div class="container">
+			<div class="col-lg-12 mx-auto">
+				<p:toolbar>
+					<p:toolbarGroup align="left">
+						<h2>Carrinho de Compras</h2>
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						<h:form>
+							<p:commandButton ajax="false" styleClass="ui-button-success" value="Finalizar Compra" actionListener="#{carrinhoController.finalizarCompra}" update="growl">
+								<p:confirm disabled="#{templateController.usuarioLogado != null}" header="Logar no Sistema" message="Para concluir, é necessário estar logado. Deseja ir para a tela de login?"
+									icon="pi pi-exclamation-triangle" />
+							</p:commandButton>
+						</h:form>
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<h:form id="formDataTable">
+					<div class="card">
+						<p:dataTable var="obj" value="#{carrinhoController.itensCarrinho}">
+							<p:column>
+								<h:graphicImage url="#{obj.produto.urlImagem}" width="25%" />
+							</p:column>
+
+							<p:column headerText="Produto">
+								<h:outputText value="#{obj.produto.nome}" />
+							</p:column>
+
+							<p:column headerText="Quantidade">
+								<h:outputText value="#{obj.quantidade}" />
+							</p:column>
+
+							<p:column headerText="Preço">
+								<h:outputText style="font-weight: bold; " value="#{obj.produto.preco}">
+									<f:convertNumber currencySymbol="R$" type="currency" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Preço Total">
+								<h:outputText style="font-weight: bold; " value="#{obj.produto.preco * obj.quantidade}">
+									<f:convertNumber currencySymbol="R$" type="currency" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Ação">
+								<p:commandButton actionListener="#{carrinhoController.excluirItem(obj.produto)}" title="Remover" type="button" icon="pi pi-minus"
+									styleClass="rounded-button ui-button-danger ui-button-outlined" process="@this" />
+								<span />
+								<p:commandButton actionListener="#{carrinhoController.adicionar(obj.produto)}" title="Adicionar" type="button" icon="pi pi-plus" styleClass="rounded-button ui-button-secondary" process="@this" />
+							</p:column>
+						</p:dataTable>
+					</div>
+					<p style="text-align: right;">
+						Total da Compra:
+						<h:outputText style="font-weight: bold;" value="#{carrinhoController.getTotalCarrinho()}">
+							<f:convertNumber currencySymbol="R$" type="currency" />
+						</h:outputText>
+					</p>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

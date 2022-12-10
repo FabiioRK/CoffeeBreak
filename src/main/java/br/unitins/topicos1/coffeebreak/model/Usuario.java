@@ -36,6 +36,8 @@ public class Usuario extends DefaultEntity implements Cloneable {
 		}
 	}
 
+	//GETTERS E SETTERS
+	
 	public String getNome() {
 		return nome;
 	}

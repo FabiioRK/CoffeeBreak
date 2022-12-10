@@ -14,19 +14,11 @@ public abstract class DefaultEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -38,5 +30,15 @@ public abstract class DefaultEntity {
 		DefaultEntity other = (DefaultEntity) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	//GETTERS E SETTERS
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	
 }

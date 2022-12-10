@@ -22,7 +22,7 @@ import br.unitins.topicos1.coffeebreak.repository.UsuarioRepository;
 @ViewScoped
 public class FormUsuarioController implements Serializable {
 	
-	private static final long serialVersionUID = -4197665569375141413L;
+	private static final long serialVersionUID = 657010740587674305L;
 	private Usuario usuario = null;
 	private List<Estado> listaEstado;
 	
@@ -56,11 +56,10 @@ public class FormUsuarioController implements Serializable {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 		
-		Util.addInfoMessage("Usuario salvo com sucesso.");
-		
 		PrimeFaces.current().executeScript("location.reload()");
         PrimeFaces.current().ajax().update("form:messages", "form:ltUsuarios");
 		
+        Util.addInfoMessage("Usuario salvo com sucesso.");
 		return "usuarios.xhtml?faces-redirect=true";
 	}
 	

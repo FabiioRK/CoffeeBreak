@@ -25,9 +25,6 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		String endereco = servletRequest.getRequestURI();
 		
-		System.out.println(endereco);
-		
-		
 		// retorna uma sessao corrente (false - nao cria uma nova estrutura de sessao)
 		HttpSession session =  servletRequest.getSession(false);
 		Usuario usuarioLogado = null;
@@ -43,9 +40,8 @@ public class SecurityFilter implements Filter {
 				System.out.println("tem acesso");
 				chain.doFilter(request, response);
 			} else {
-				usuarioLogado.getPerfil().getPaginas().forEach(System.out::println);
 				System.out.println("não tem acesso");
-				((HttpServletResponse)response).sendRedirect("/CoffeeBreak/semacesso.xhtml");
+				((HttpServletResponse)response).sendRedirect("/CoffeeBreak/home.xhtml");
 			}
 		}
 		

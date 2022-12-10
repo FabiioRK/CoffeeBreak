@@ -18,7 +18,7 @@ import br.unitins.topicos1.coffeebreak.repository.UsuarioRepository;
 @ViewScoped
 public class UsuariosController implements Serializable {
 
-	private static final long serialVersionUID = 8826311835173736094L;
+	private static final long serialVersionUID = -6108295715387315132L;
 	private List<Usuario> listaUsuario;
 	private Usuario usuario;
 
@@ -36,6 +36,10 @@ public class UsuariosController implements Serializable {
 	public void adicionar() {
 		setUsuario(new Usuario());
 	}
+	
+	public void ir() {
+		Util.redirect("admin/usuarios.xhtml");
+	}
 
 	public String excluir(Usuario usuario) {
 		UsuarioRepository repo = new UsuarioRepository(JPAUtil.getEntityManager());
@@ -46,12 +50,12 @@ public class UsuariosController implements Serializable {
 			e.printStackTrace();
 		}
 		
-		Util.addInfoMessage("Usuario excluído com sucesso.");
 		
 		PrimeFaces.current().executeScript("location.reload()");
 		PrimeFaces.current().ajax().update("form:messages", "form:ltUsuarios");
 		
-		return "usuarios.xhtml?faces-redirect=true";
+		Util.addInfoMessage("Usuario excluído com sucesso.");
+		return "admin/usuarios.xhtml?faces-redirect=true";
 	}
 
 	public Usuario getUsuario() {
