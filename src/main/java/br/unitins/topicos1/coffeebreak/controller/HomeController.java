@@ -11,6 +11,8 @@ import javax.faces.context.Flash;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import br.unitins.topicos1.coffeebreak.application.Session;
 import br.unitins.topicos1.coffeebreak.application.Util;
 import br.unitins.topicos1.coffeebreak.model.Compra;
@@ -27,7 +29,6 @@ public class HomeController {
 	private List<Produto> listaProduto;
 
 	public HomeController() {
-		System.out.println("Contrutor");
 	}
 
 	@PostConstruct
@@ -39,6 +40,15 @@ public class HomeController {
 			setListaProduto((ArrayList<Produto>) resultado);
 		else
 			setListaProduto(repository.buscarTodos());
+	}
+	
+	public void filtro(String pesquisa) {
+		setListaProduto(repository.buscarPeloNome(pesquisa));
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("pesquisaProduto", listaProduto);
+		flash.keep("pesquisaProduto");
+		
+		System.out.println(listaProduto.get(0).getNome());
 	}
 
 	public void adicionarCarrinho(Produto produto) {

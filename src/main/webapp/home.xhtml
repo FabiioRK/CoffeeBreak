@@ -1,46 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
-    <h:form id="form">
-        <p:dataView var="produto" value="#{homeController.listaProduto}" rows="6" paginator="true" 
-       				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} produtos"
-       				
-       				rowsPerPageTemplate="5,10,15"
-                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    layout="grid" gridRowStyleClass="lg:col-6 xl:col-4" flex="true" emptyMessage="Produto não encontrado!" style="margin-left:20px; margin-right:20px;"  >
+		<div class="col-lg-10 mx-auto">
+			<div class="mt-2 mx-auto p-4">
+				<div class="product card">
+					<h:form id="form">
+						<p:dataGrid widgetVar="ltProdutos" var="produto" value="#{homeController.listaProduto}" rows="6" paginator="true" rowsPerPageTemplate="5,10,15"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" columns="3" layout="grid"
+							emptyMessage="Produto não encontrado!">
+							<f:facet name="header">
+								<div class="col-12 md:col-4">
+									<div class="ui-inputgroup">
+										<p:inputText id="pesquisar" placeholder="Pesquisar" binding="#{input}" />
+										<p:commandButton  icon="pi pi-search" actionListener="#{homeController.filtro(input.value)}" styleClass="ui-button-warning" />
+									</div>
+								</div>
+							</f:facet>
 
-               <p:dataViewGridItem >
-		        <p:card  style="text-align:center; line-height: 1.5; font-size: large; padding: 0;" >
-		        	<f:facet name="header" >
-		        		#{produto.nome}
-		        	</f:facet>
-		            <h:panelGrid columns="1" style="width:100%; padding-bottom: 5px;"  >
-		            	<h:graphicImage url="#{produto.urlImagem}" width="10%"/>
-		
-		                <h:outputText style="font-weight: bold; " value="#{produto.preco}" >
-		                	<f:convertNumber  currencySymbol="R$" type="currency"/>
-		                </h:outputText>
-		
-						<p:commandButton 
-							value="Adicionar ao Carrinho" 
-							icon="pi pi-shopping-cart" 
-							style="font-size: medium; margin-top: 10px;"
-							actionListener="#{homeController.adicionarCarrinho(produto)}"
-							process="@this" ajax="false"/>
-		            </h:panelGrid>
-		        </p:card>
-			</p:dataViewGridItem>
-         
-        </p:dataView>
-    </h:form>
+							<div class="product-grid-item card border-0" style="margin-bottom: 0">
+								<div class="product-grid-item-top">
+									<div class="product-grid-item-content">
+										<p:column filterBy="#{produto.nome}" filterMatchMode="contains" filterStyle="display:none">
+											<p:graphicImage url="#{produto.urlImagem}" width="25%" />
+											<div class="product-name">
+												<p:outputLabel value="#{produto.nome}" />
+											</div>
+										</p:column>
+									</div>
+								</div>
+								<div class="product-grid-item-bottom">
+									<p:column>
+										<h:outputText style="font-weight: bold;" styleClass="product-price" value="#{produto.preco}">
+											<f:convertNumber currencySymbol="R$" type="currency" />
+										</h:outputText>
+									</p:column>
+
+									<p:column>
+										<p:commandButton value="Adicionar" icon="pi pi-shopping-cart" actionListener="#{homeController.adicionarCarrinho(produto)}" process="@this" ajax="false" />
+									</p:column>
+								</div>
+							</div>
+
+						</p:dataGrid>
+					</h:form>
+				</div>
+			</div>
+		</div>
 	</ui:define>
-	</ui:composition>
+</ui:composition>
 </html>

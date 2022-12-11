@@ -8,6 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.topicos1.coffeebreak.application.Session;
+import br.unitins.topicos1.coffeebreak.application.Util;
 import br.unitins.topicos1.coffeebreak.model.Compra;
 import br.unitins.topicos1.coffeebreak.model.Usuario;
 
@@ -16,6 +17,14 @@ import br.unitins.topicos1.coffeebreak.model.Usuario;
 public class TemplateController implements Serializable {
 
 	private static final long serialVersionUID = -6813511878037231636L;
+	
+	public String editarPerfil() {
+		return "editarperfil.xhtml?faces-redirect=true";
+	}
+	
+	public void perfil() {
+		Util.redirect("perfil.xhtml");;
+	}
 
 	public Usuario getUsuarioLogado() {
 		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();

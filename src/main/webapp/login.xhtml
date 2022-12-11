@@ -1,45 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
 	<title>Login</title>
 	<meta charset="utf-8" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 		crossorigin="anonymous"></link>
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-		rel="stylesheet"></link>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"></link>
 	<h:outputStylesheet library="css" name="loginStyle.css" />
 </h:head>
 <h:body class="text-center">
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-6 col-md-auto login-box">
-				<h:messages id="messages" errorStyle="color:red"
-					infoStyle="color:green" warnStyle="color:yellow" showDetail="false" />
-
 				<h:form class="form-signin">
+					<p:growl id="growl" />
 					<h1 class="h3 mb-3 font-weight-normal">Área de Login</h1>
-					<h:inputText id="inputEmail" styleClass="form-control"
-						pt:placeholder="Login" value="#{loginController.usuario.login}" />
+					<h:inputText id="inputEmail" styleClass="form-control" pt:placeholder="Login" value="#{loginController.usuario.login}" />
 
 					<hr style="margin: 0; background: black; border: none;" />
 
-					<h:inputSecret id="inputPassword" styleClass="form-control"
-						pt:placeholder="Senha" value="#{loginController.usuario.senha}" />
+					<h:inputSecret id="inputPassword" styleClass="form-control" pt:placeholder="Senha" value="#{loginController.usuario.senha}" />
 
-					<h:commandButton value="Logar"
-						styleClass="btn btn-outline-secondary btn-rounded login-botoes"
-						action="#{loginController.logar()}" />
-					<h:commandButton value="Limpar"
-						styleClass="btn btn-outline-secondary btn-rounded login-botoes"
-						action="#{loginController.limpar()}" />
+					<h:commandButton value="Logar" styleClass="btn btn-outline-secondary btn-block mt-2" action="#{loginController.logar()}" />
+					<h:commandButton value="Limpar" styleClass="btn btn-outline-secondary btn-block" action="#{loginController.limpar()}" />
+
+					<p class="mt-3">
+						Não possui cadastro? <a href="registrar.xhtml">Registre-se</a>
+					</p>
 				</h:form>
 			</div>
 		</div>

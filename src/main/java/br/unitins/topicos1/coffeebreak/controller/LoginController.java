@@ -24,11 +24,11 @@ public class LoginController {
 		
 		Usuario usuarioLogado;
 		try {
-			usuarioLogado = repo.buscar(getUsuario().getLogin(), getUsuario().getSenha());
+			usuarioLogado = repo.buscar(getUsuario().getLogin(), Util.hash(getUsuario().getSenha()));
 		} catch (RepositoryException e) {
 			// quando entrar nesse exception, significa que o usuario não foi encontrado
 			e.printStackTrace();
-			Util.addErrorMessage(e.getMessage());
+			Util.addErrorMessage("Usuário ou senha inválidos.");
 			return null;
 		}
 		
