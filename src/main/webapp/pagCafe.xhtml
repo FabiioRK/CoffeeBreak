@@ -8,28 +8,22 @@
 			<div class="mt-2 mx-auto p-4">
 				<div class="product card">
 					<h:form id="form">
-						<p:dataGrid widgetVar="ltProdutos" var="produto" value="#{pagCafeController.listaProduto}" rows="6" paginator="true" rowsPerPageTemplate="5,10,15"
-							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" columns="3" layout="grid"
-							emptyMessage="Produto não encontrado!">
+						<p:dataTable  emptyMessage="Nenhum produto encontrado." styleClass="table" widgetVar="ltProdutos" value="#{pagCafeController.listaProduto}" var="produto" paginator="true" rows="10"
+							paginatorPosition="bottom" rowsPerPageTemplate="5,10,{ShowAll|'All'}" rowKey="#{produto.nome}">
 							<f:facet name="header">
-								<div class="col-12 md:col-4">
-									<div class="ui-inputgroup">
-										<p:inputText id="pesquisar" placeholder="Pesquisar" binding="#{input}" />
-										<p:commandButton  icon="pi pi-search" actionListener="#{pagCafeController.filtro(input.value)}" styleClass="ui-button-warning" />
-									</div>
+								<div class="products-table-header">
+									<span style="font-weight: bold">PRODUTOS</span> <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i> <p:inputText id="globalFilter"
+											onkeyup="PF('ltProdutos').filter()" placeholder="Pesquisar" />
+									</span>
 								</div>
 							</f:facet>
 
 							<div class="product-grid-item card border-0" style="margin-bottom: 0">
 								<div class="product-grid-item-top">
-									<div class="product-grid-item-content">
 										<p:column filterBy="#{produto.nome}" filterMatchMode="contains" filterStyle="display:none">
 											<p:graphicImage url="#{produto.urlImagem}" width="25%" />
-											<div class="product-name">
-												<p:outputLabel value="#{produto.nome}" />
-											</div>
+												<p:outputLabel style="font-weight: bold;" value="#{produto.nome}" />
 										</p:column>
-									</div>
 								</div>
 								<div class="product-grid-item-bottom">
 									<p:column>
@@ -44,7 +38,8 @@
 								</div>
 							</div>
 
-						</p:dataGrid>
+						</p:dataTable>
+
 					</h:form>
 				</div>
 			</div>

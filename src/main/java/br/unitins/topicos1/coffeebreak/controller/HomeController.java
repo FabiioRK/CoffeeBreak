@@ -41,15 +41,6 @@ public class HomeController {
 		else
 			setListaProduto(repository.buscarTodos());
 	}
-	
-	public void filtro(String pesquisa) {
-		setListaProduto(repository.buscarPeloNome(pesquisa));
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("pesquisaProduto", listaProduto);
-		flash.keep("pesquisaProduto");
-		
-		System.out.println(listaProduto.get(0).getNome());
-	}
 
 	public void adicionarCarrinho(Produto produto) {
 		Compra carrinho;

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <h:head>
 	<title>Menu</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-		crossorigin="anonymous"></link>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"></link>
 	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
@@ -17,22 +18,33 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="home.xhtml">CoffeeBreak</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="home.xhtml">Home</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Loja</a>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="home.xhtml">Home</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">Loja</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="home.xhtml">Todos os produtos</a></li>
+							<li>
+								<a class="dropdown-item" href="home.xhtml">Todos os produtos</a>
+							</li>
 							<li>
 								<hr class="dropdown-divider" />
 							</li>
-							<li><a class="dropdown-item" href="pagCafeteira.xhtml">Cafeteiras</a></li>
-							<li><a class="dropdown-item" href="pagCafe.xhtml">Café</a></li>
-						</ul></li>
+							<li>
+								<a class="dropdown-item" href="pagCafeteira.xhtml">Cafeteiras</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="pagCafe.xhtml">Café</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 
 				<ul class="navbar-nav ml-auto mb-lg-0 ms-lg-4">
@@ -40,40 +52,57 @@
 						<h:link outcome="carrinho.xhtml" class="btn btn-outline-dark">
 							<i class="bi-cart-fill me-1"></i>
 						Carrinho
-						<p:badge class="badge bg-dark text-white ms-1 rounded-pill" value="#{templateController.getQuantidadeCarrinho()}"></p:badge>
+						<p:badge id="carrinhoCounter" class="badge bg-dark text-white ms-1 rounded-pill" value="#{templateController.getQuantidadeCarrinho()}"></p:badge>
 						</h:link>
 					</h:form>
 
 					<ui:fragment rendered="#{templateController.usuarioLogado != null}">
-						<li class="nav-item dropdown"><h:form>
-								<a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <h:outputLabel>
+						<li class="nav-item dropdown">
+							<h:form>
+								<a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									<h:outputLabel>
       			Olá #{templateController.usuarioLogado.nome}
       		</h:outputLabel>
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><h:commandLink rendered="#{templateController.usuarioLogado.perfil.id == 1}" action="#{usuariosController.ir}" class="dropdown-item">
+									<li>
+										<h:commandLink rendered="#{templateController.usuarioLogado.perfil.id == 1}" action="#{usuariosController.ir}"
+											class="dropdown-item">
 					Usuários
-					</h:commandLink></li>
-									<li><h:commandLink rendered="#{templateController.usuarioLogado.perfil.id == 1}" action="#{produtosController.ir}" class="dropdown-item">
+					</h:commandLink>
+									</li>
+									<li>
+										<h:commandLink rendered="#{templateController.usuarioLogado.perfil.id == 1}" action="#{produtosController.ir}"
+											class="dropdown-item">
 					Produtos
-					</h:commandLink></li>
-									<li><h:commandLink action="#{historicoController.ir}" class="dropdown-item">
+					</h:commandLink>
+									</li>
+									<li>
+										<h:commandLink action="#{historicoController.ir}" class="dropdown-item">
 					Histórico
-					</h:commandLink></li>
-									<li><h:commandLink action="#{templateController.perfil}" class="dropdown-item">
+					</h:commandLink>
+									</li>
+									<li>
+										<h:commandLink action="#{templateController.perfil}" class="dropdown-item">
 					Perfil
-					</h:commandLink></li>
+					</h:commandLink>
+									</li>
 									<li>
 										<hr class="dropdown-divider" />
 									</li>
-									<li><h:commandLink action="#{templateController.encerrarSessao}" class="dropdown-item">
+									<li>
+										<h:commandLink action="#{templateController.encerrarSessao}" class="dropdown-item">
 					Sair
-					</h:commandLink></li>
+					</h:commandLink>
+									</li>
 								</ul>
-							</h:form></li>
+							</h:form>
+						</li>
 					</ui:fragment>
 
-					<h:link outcome="login.xhtml" rendered="#{templateController.usuarioLogado == null}" class="pb-n5 ml-1 btn btn-outline-dark">Login</h:link>
+					<h:link outcome="login.xhtml" rendered="#{templateController.usuarioLogado == null}"
+						class="pb-n5 ml-1 btn btn-outline-dark">Login</h:link>
 
 				</ul>
 			</div>
@@ -97,6 +126,19 @@
 			<p class="m-0 text-center text-white">Copyright CoffeeBreak Tópicos 1</p>
 		</div>
 	</footer>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+		<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		<div class="text-center">
+			<p:graphicImage library="images" name="loading.gif" width="50%" />
+		</div>
+	</p:dialog>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

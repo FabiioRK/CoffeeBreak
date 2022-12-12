@@ -40,7 +40,7 @@ public class PagCafeController {
 		else
 			setListaProduto(repository.buscarPorTipoProduto(TipoProduto.CAFE));
 	}
-	
+
 	public void adicionarCarrinho(Produto produto) {
 		Compra carrinho;
 		
